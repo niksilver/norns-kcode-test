@@ -26,26 +26,36 @@ function redraw()
 
     screen.move(0, 24)
     screen.text("keyboard.code(" ..
-        tostring(state.kcode.key) .. ", " ..
-        tostring(state.kcode.value) .. ")"
+        stringify(state.kcode.key) .. ", " ..
+        stringify(state.kcode.value) .. ")"
     )
 
     screen.move(0, 32)
     screen.text("    code_to_char(...) = " ..
-        tostring(state.kcode.code_to_char)
+        stringify(state.kcode.code_to_char)
     )
 
     screen.move(0, 48)
-    screen.text("keyboard.char('" ..
-        tostring(state.kchar.ch) .. "')"
+    screen.text("keyboard.char(" ..
+        stringify(state.kchar.ch) .. ")"
     )
 
     screen.move(0, 56)
     screen.text("    char_to_code(...) = " ..
-        tostring(state.kchar.char_to_code)
+        stringify(state.kchar.char_to_code)
     )
 
     screen.update()
+end
+
+function stringify(s)
+    if type(s) ~= "string" then
+        return tostring(s)
+    end
+
+    local prefix = (s == '\\' or s == "'") and '\\' or ''
+
+    return "'" .. prefix .. s .. "'"
 end
 
 function keyboard.code(key, value)
