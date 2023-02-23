@@ -10,7 +10,6 @@ local state = {
 
     kchar = {
         ch = nil,
-        char_to_code = nil
     }
 }
 
@@ -40,11 +39,6 @@ function redraw()
         stringify(state.kchar.ch) .. ")"
     )
 
-    screen.move(0, 56)
-    screen.text("    char_to_code(...) = " ..
-        stringify(state.kchar.char_to_code)
-    )
-
     screen.update()
 end
 
@@ -67,6 +61,5 @@ end
 
 function keyboard.char(ch)
     state.kchar.ch = ch
-    state.kchar.char_to_code = keyboard.char_to_code(ch)
     redraw()
 end
